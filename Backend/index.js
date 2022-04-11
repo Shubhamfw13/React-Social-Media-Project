@@ -5,9 +5,9 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const helmet = require("helmet");
 const morgan = require("morgan");
-const userRoute = require("./routes/users")
-const authRoute = require("./routes/auth")
-
+const userRoute = require("./routes/users");
+const authRoute = require("./routes/auth");
+const postRoute = require("./routes/posts");
 
 // 3rd Step
 dotenv.config();
@@ -21,12 +21,13 @@ mongoose.connect(
 
 // rest steps
 // MIDDLEWARES
-app.use(express.json())
-app.use(helmet())
-app.use(morgan("common"))
+app.use(express.json());
+app.use(helmet());
+app.use(morgan("common"));
 
-app.use("/api/users",userRoute)
-app.use("/api/auth",authRoute)
+app.use("/api/users", userRoute);
+app.use("/api/auth", authRoute);
+app.use("/api/posts", postRoute);
 
 // app.get("/",(req,res)=>{
 //     res.send("Welcome to homepage")
@@ -34,7 +35,6 @@ app.use("/api/auth",authRoute)
 // app.get("/users",(req,res)=>{
 //     res.send("Welcome to userpage")
 // })
-
 
 // 2nd Step
 app.listen(8800, () => {
